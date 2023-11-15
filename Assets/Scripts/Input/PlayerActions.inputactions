@@ -146,30 +146,8 @@
                 },
                 {
                     "name": "",
-                    "id": "4e064a48-e5b0-4527-a5c4-6091e07de411",
-                    "path": "<Gamepad>/leftStick",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "bf2233da-93ea-4da3-b12f-1c35d1da660e",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c6179df2-4a9d-4060-b5b9-649836591621",
-                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
