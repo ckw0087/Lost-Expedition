@@ -6127,6 +6127,7 @@ GameObject:
   - component: {fileID: 799121161}
   - component: {fileID: 799121160}
   - component: {fileID: 799121166}
+  - component: {fileID: 799121167}
   m_Layer: 0
   m_Name: Player_1_Woodcutter
   m_TagString: Untagged
@@ -6346,7 +6347,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &799121165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6390,6 +6391,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   threshold: 0.1
+--- !u!114 &799121167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799121155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2414987677bd84996548649b206bce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 10
 --- !u!1 &1079801686
 GameObject:
   m_ObjectHideFlags: 0
