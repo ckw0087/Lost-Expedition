@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterMovement : CharacterMechanics
 {
@@ -9,6 +10,14 @@ public class CharacterMovement : CharacterMechanics
     public float MoveSpeed { get; set; }
 
     private readonly int movingParameter = Animator.StringToHash("Moving");
+    private InputAction moveAction;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        moveAction = playerInput.actions["Move"];
+    }
 
     protected override void Start()
     {
@@ -16,9 +25,26 @@ public class CharacterMovement : CharacterMechanics
 
         MoveSpeed = moveSpeed;
     }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        moveAction.Enable();
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+
+        moveAction.Disable();
+    }
+
     protected override void HandleAbility()
     {
         base.HandleAbility();
+
+        movementInput = moveAction.ReadValue<Vector2>();
 
         MoveCharacter();
         UpdateAnimation();

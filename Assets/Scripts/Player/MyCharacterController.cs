@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MyCharacterController : MonoBehaviour
 {
+    [SerializeField] private float recoilMultiplier;
+
     public Vector2 CurrentMovement { get; set; }
     public bool NormalMovement { get; set; }
-
-    [SerializeField] private float recoilMultiplier;
 
     private Rigidbody2D myRigidbody2D;
     private Vector2 recoilMovement;
@@ -52,5 +52,11 @@ public class MyCharacterController : MonoBehaviour
     public void ApplyRecoil(Vector2 recoilDirection, float recoilForce)
     {
         recoilMovement = recoilDirection * recoilForce;
+    }
+
+    public void Jump(float jumpForce)
+    {
+        myRigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        Debug.Log("Jumped.");
     }
 }

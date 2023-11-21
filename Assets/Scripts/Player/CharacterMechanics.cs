@@ -13,15 +13,12 @@ public class CharacterMechanics : MonoBehaviour
     protected CharacterMovement characterMovement;
     protected Character character;
     protected Animator animator;
-
-    private PlayerInput playerInput;
-    private InputAction moveAction;
+    protected PlayerInput playerInput;
+    
 
     protected virtual void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();       
-
-        moveAction = playerInput.actions["Move"];
+        playerInput = GetComponent<PlayerInput>();              
     }
 
     // Start is called before the first frame update
@@ -41,17 +38,16 @@ public class CharacterMechanics : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        moveAction.Enable();
+        
     }
     
     protected virtual void OnDisable()
     {
-        moveAction.Disable();
+        
     }
 
     protected virtual void HandleAbility()
-    {
-        movementInput = moveAction.ReadValue<Vector2>();
+    {       
         InternalInput();
     }
 
