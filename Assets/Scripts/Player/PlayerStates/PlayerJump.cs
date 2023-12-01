@@ -8,6 +8,24 @@ public class PlayerJump : PlayerStates
     [SerializeField] private float jumpHeight = 5f;
     [SerializeField] private int maxJumps = 2;
 
+    // Return how many jumps we have left
+    public int JumpsLeft { get; set; }
+
+    protected override void InitState()
+    {
+        base.InitState();
+        JumpsLeft = maxJumps;
+    }
+
+    public override void ExecuteState()
+    {
+        if (playerController.Conditions.IsCollidingBelow && playerController.Force.y == 0f)
+        {
+            JumpsLeft = maxJumps;
+            playerController.Conditions.IsJumping = false;
+        }
+    }
+
     protected override void GetInput()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -18,7 +36,35 @@ public class PlayerJump : PlayerStates
 
     private void Jump()
     {
+        if (!CanJump())
+        {
+            return;
+        }
+
+        if (JumpsLeft == 0)
+        {
+            return;
+        }
+
+        JumpsLeft -= 1;
+
         float jumpForce = Mathf.Sqrt(jumpHeight * 2f * Mathf.Abs(playerController.Gravity));
         playerController.SetVerticalForce(jumpForce);
     }
+
+    private bool CanJump()
+    {
+        if (!playerController.Conditions.IsCollidingBelow && JumpsLeft <= 0)
+        {
+            return false;
+        }
+
+        if (playerController.Conditions.IsCollidingBelow && JumpsLeft <= 0)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
 }

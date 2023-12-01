@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float gravity = -20f;
+    [SerializeField] private float fallMultiplier = 1.5f;
 
     [Header("Collisions")]
     [SerializeField] private LayerMask collideWith;
@@ -14,6 +15,12 @@ public class PlayerController : MonoBehaviour
 
     //Properties
     public bool FacingRight { get; set; }
+    // Return the Force applied 
+    public Vector2 Force => force;
+
+    // Return the conditions
+    public PlayerConditions Conditions => conditions;
+
     public float Gravity => gravity;
 
     //Internal
@@ -63,11 +70,7 @@ public class PlayerController : MonoBehaviour
         }
 
         CollideBelow();
-
-        Debug.DrawRay(boundsTopLeft, Vector2.left, Color.blue);
-        Debug.DrawRay(boundsTopRight, Vector2.right, Color.blue);
-        Debug.DrawRay(boundsBottomLeft, Vector2.left, Color.blue);
-        Debug.DrawRay(boundsBottomRight, Vector2.right, Color.blue);
+        CollideAbove();
 
         transform.Translate(movePosition, Space.Self);
 
@@ -78,6 +81,11 @@ public class PlayerController : MonoBehaviour
     private void ApplyGravity()
     {
         currentGravity = gravity;
+
+        if (force.y < 0)
+        {
+            currentGravity *= fallMultiplier;
+        }
 
         force.y += currentGravity * Time.deltaTime;
     }
@@ -171,6 +179,36 @@ public class PlayerController : MonoBehaviour
                 {
                     movePosition.y = 0f;
                 }
+            }
+        }
+    }
+
+    private void CollideAbove()
+    {
+        if (movePosition.y < 0)
+        {
+            return;
+        }
+
+        // Set rayLenght
+        float rayLenght = movePosition.y + boundsHeight / 2f;
+
+        // Origin Points
+        Vector2 rayTopLeft = (boundsBottomLeft + boundsTopLeft) / 2f;
+        Vector2 rayTopRight = (boundsBottomRight + boundsTopRight) / 2f;
+        rayTopLeft += (Vector2)transform.right * movePosition.x;
+        rayTopRight += (Vector2)transform.right * movePosition.x;
+
+        for (int i = 0; i < verticalRayAmount; i++)
+        {
+            Vector2 rayOrigin = Vector2.Lerp(rayTopLeft, rayTopRight, (float)i / (float)(verticalRayAmount - 1));
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, transform.up, rayLenght, collideWith);
+            Debug.DrawRay(rayOrigin, transform.up * rayLenght, Color.red);
+
+            if (hit)
+            {
+                movePosition.y = hit.distance - boundsHeight / 2f;
+                conditions.IsCollidingAbove = true;
             }
         }
     }
