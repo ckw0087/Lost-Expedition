@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
     private float internalFaceDirection = 1f;
     private float faceDirection;
 
+    private float wallFallMultiplier;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -59,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
         SetupRayOrigin();
         GetFaceDirection();
+        RotateModel();
 
         if (FacingRight)
         {
@@ -88,6 +91,11 @@ public class PlayerController : MonoBehaviour
         }
 
         force.y += currentGravity * Time.deltaTime;
+
+        if (wallFallMultiplier != 0)
+        {
+            force.y *= wallFallMultiplier;
+        }
     }
 
     private void CalculateMovement()
@@ -110,6 +118,11 @@ public class PlayerController : MonoBehaviour
     public void SetVerticalForce(float yForce)
     {
         force.y = yForce;
+    }
+
+    public void SetWallClingMultiplier(float fallM)
+    {
+        wallFallMultiplier = fallM;
     }
 
     private void SetupRayOrigin()
@@ -263,5 +276,17 @@ public class PlayerController : MonoBehaviour
         }
 
         internalFaceDirection = faceDirection;
+    }
+
+    private void RotateModel()
+    {
+        if (FacingRight)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 }

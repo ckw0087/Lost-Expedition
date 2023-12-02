@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStates : MonoBehaviour
 {
     protected PlayerController playerController;
+    protected Animator animator;
     protected float horizontalInput;
     protected float verticalInput;
 
@@ -18,6 +19,7 @@ public class PlayerStates : MonoBehaviour
     protected virtual void InitState()
     {
         playerController = GetComponent<PlayerController>();
+        animator = GetComponent<Animator>();
     }
 
     // Override in order to create the state logic
@@ -37,6 +39,11 @@ public class PlayerStates : MonoBehaviour
 
     // Override to support other Inputs
     protected virtual void GetInput()
+    {
+
+    }
+
+    public virtual void SetAnimation()
     {
 
     }
