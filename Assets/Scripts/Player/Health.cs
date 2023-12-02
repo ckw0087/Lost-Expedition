@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
 {
     public static Action<int> OnLifesChanged;
     public static Action<PlayerMotor> OnDeath;
+    public static Action<PlayerMotor> OnRevive;
 
     [Header("Settings")]
     [SerializeField] private int lifes = 3;
@@ -61,6 +62,11 @@ public class Health : MonoBehaviour
     {
         currentLifes = lifes;
         UpdateLifesUI();
+    }
+
+    public void Revive()
+    {
+        OnRevive?.Invoke(gameObject.GetComponent<PlayerMotor>());
     }
 
     private void UpdateLifesUI()

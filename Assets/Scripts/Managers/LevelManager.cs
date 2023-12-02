@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    public static Action<PlayerMotor> OnPlayerSpawn;
+
     [Header("Settings")]
     [SerializeField] private Transform levelStartPoint;
     [SerializeField] private GameObject playerPrefab;
@@ -32,6 +34,9 @@ public class LevelManager : MonoBehaviour
         {
             currentPlayer = Instantiate(player, levelStartPoint.position, Quaternion.identity).GetComponent<PlayerMotor>();
             currentPlayer.GetComponent<Health>().ResetLife();
+
+            // Call Event
+            OnPlayerSpawn?.Invoke(currentPlayer);
         }
     }
 
@@ -43,6 +48,7 @@ public class LevelManager : MonoBehaviour
             currentPlayer.gameObject.SetActive(true);
             currentPlayer.SpawnPlayer(levelStartPoint);
             currentPlayer.GetComponent<Health>().ResetLife();
+            currentPlayer.GetComponent<Health>().Revive();
         }
     }
 
