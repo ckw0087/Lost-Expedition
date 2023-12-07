@@ -58,6 +58,13 @@ public class Health : MonoBehaviour
         UpdateLifesUI();
     }
 
+    public void KillPlayer()
+    {
+        currentLifes = 0;
+        UpdateLifesUI();
+        OnDeath?.Invoke(gameObject.GetComponent<PlayerMotor>());
+    }
+
     public void ResetLife()
     {
         currentLifes = lifes;
@@ -74,4 +81,11 @@ public class Health : MonoBehaviour
         OnLifesChanged?.Invoke(currentLifes);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.GetComponent<IDamageable>() != null)
+        {
+            other.GetComponent<IDamageable>().Damage(gameObject.GetComponent<PlayerMotor>());
+        }
+    }
 }
