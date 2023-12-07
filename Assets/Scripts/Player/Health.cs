@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
 
     private int maxLifes;
     private int currentLifes;
+    private bool hasTakenDamage;
 
     private void Awake()
     {
@@ -83,9 +84,18 @@ public class Health : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.GetComponent<IDamageable>() != null && !hasTakenDamage)
+        {
+            hasTakenDamage = true;
+            other.GetComponent<IDamageable>().Damage(gameObject.GetComponent<PlayerMotor>());
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
         if (other.GetComponent<IDamageable>() != null)
         {
-            other.GetComponent<IDamageable>().Damage(gameObject.GetComponent<PlayerMotor>());
+            hasTakenDamage = false;
         }
     }
 }

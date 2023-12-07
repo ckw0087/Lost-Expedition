@@ -10,9 +10,8 @@ public class PlayerMovement : PlayerStates
     private float horizontalMovement;
     private float movement;
 
-    //private int idleAnimatorParameter = Animator.StringToHash("Idle");
-    //private int runAnimatorParameter = Animator.StringToHash("Run");
-
+    private int idleAnimatorParameter = Animator.StringToHash("Idling");
+    private int runAnimatorParameter = Animator.StringToHash("Running");
 
     protected override void InitState()
     {
@@ -46,9 +45,9 @@ public class PlayerMovement : PlayerStates
         horizontalMovement = horizontalInput;
     }
 
-    //public override void SetAnimation()
-    //{
-    //    animator.SetBool(idleAnimatorParameter, horizontalMovement == 0 && playerController.Conditions.IsCollidingBelow);
-    //    animator.SetBool(runAnimatorParameter, Mathf.Abs(horizontalInput) > 0.1f && playerController.Conditions.IsCollidingBelow);
-    //}
+    public override void SetAnimation()
+    {
+        animator.SetBool(idleAnimatorParameter, horizontalMovement == 0 && playerController.Conditions.IsCollidingBelow);
+        animator.SetBool(runAnimatorParameter, Mathf.Abs(horizontalInput) > 0.1f && playerController.Conditions.IsCollidingBelow);
+    }
 }

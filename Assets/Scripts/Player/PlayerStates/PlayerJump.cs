@@ -8,9 +8,10 @@ public class PlayerJump : PlayerStates
     [SerializeField] private float jumpHeight = 5f;
     [SerializeField] private int maxJumps = 2;
 
-    //private int jumpAnimatorParameter = Animator.StringToHash("Jump");
+    private int jumpAnimatorParameter = Animator.StringToHash("Jumping");
     //private int doubleJumpParameter = Animator.StringToHash("DoubleJump");
-    //private int fallAnimatorParameter = Animator.StringToHash("Fall");
+    private int fallAnimatorParameter = Animator.StringToHash("Falling");
+    private int landAnimatorParameter = Animator.StringToHash("Landing");
 
     // Return how many jumps we have left
     public int JumpsLeft { get; set; }
@@ -72,26 +73,32 @@ public class PlayerJump : PlayerStates
         return true;
     }
 
-    //public override void SetAnimation()
-    //{
-    //    // Jump
-    //    animator.SetBool(jumpAnimatorParameter, playerController.Conditions.IsJumping
-    //                                              && !playerController.Conditions.IsCollidingBelow
-    //                                              && JumpsLeft > 0
-    //                                              && !playerController.Conditions.IsFalling
-    //                                              && !playerController.Conditions.IsJetpacking);
+    public override void SetAnimation()
+    {
+        // Jump
+        animator.SetBool(jumpAnimatorParameter, playerController.Conditions.IsJumping
+                                                  && !playerController.Conditions.IsCollidingBelow
+                                                  && JumpsLeft > 0
+                                                  && !playerController.Conditions.IsFalling
+                                                  && !playerController.Conditions.IsJetpacking);
 
-    //    // Double jump
-    //    animator.SetBool(doubleJumpParameter, playerController.Conditions.IsJumping
-    //                                              && !playerController.Conditions.IsCollidingBelow
-    //                                              && JumpsLeft == 0
-    //                                              && !playerController.Conditions.IsFalling
-    //                                              && !playerController.Conditions.IsJetpacking);
+        //// Double jump
+        //animator.SetBool(doubleJumpParameter, playerController.Conditions.IsJumping
+        //                                          && !playerController.Conditions.IsCollidingBelow
+        //                                          && JumpsLeft == 0
+        //                                          && !playerController.Conditions.IsFalling
+        //                                          && !playerController.Conditions.IsJetpacking);
 
-    //    // Fall
-    //    animator.SetBool(fallAnimatorParameter, playerController.Conditions.IsFalling
-    //                                              && playerController.Conditions.IsJumping
-    //                                              && !playerController.Conditions.IsCollidingBelow
-    //                                              && !playerController.Conditions.IsJetpacking);
-    //}
+        // Fall
+        animator.SetBool(fallAnimatorParameter, playerController.Conditions.IsFalling
+                                                  && playerController.Conditions.IsJumping
+                                                  && !playerController.Conditions.IsCollidingBelow
+                                                  && !playerController.Conditions.IsJetpacking);
+
+        // Land
+        animator.SetBool(landAnimatorParameter, playerController.Conditions.IsCollidingBelow
+                                                  && playerController.Conditions.IsJumping
+                                                  && !playerController.Conditions.IsFalling 
+                                                  && !playerController.Conditions.IsJetpacking);
+    }
 }
