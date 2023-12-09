@@ -15,12 +15,12 @@ public class PlayerController : MonoBehaviour
 
     //Properties
     public bool FacingRight { get; set; }
+    public float Friction { get; set; }
+
     // Return the Force applied 
     public Vector2 Force => force;
-
     // Return the conditions
     public PlayerConditions Conditions => conditions;
-
     public float Gravity => gravity;
 
     //Internal
@@ -120,6 +120,11 @@ public class PlayerController : MonoBehaviour
         force.y = yForce;
     }
 
+    public void AddHorizontalMovement(float xForce)
+    {
+        force.x += xForce;
+    }
+
     public void SetWallClingMultiplier(float fallM)
     {
         wallFallMultiplier = fallM;
@@ -140,6 +145,8 @@ public class PlayerController : MonoBehaviour
 
     private void CollideBelow()
     {
+        Friction = 0f;
+
         if (movePosition.y < -0.0001f)
         {
             conditions.IsFalling = true;
@@ -175,6 +182,8 @@ public class PlayerController : MonoBehaviour
 
             if (hit)
             {
+                GameObject hitObject = hit.collider.gameObject;
+
                 if (force.y > 0)
                 {
                     movePosition.y = force.y * Time.deltaTime;
@@ -191,6 +200,11 @@ public class PlayerController : MonoBehaviour
                 if (Mathf.Abs(movePosition.y) < 0.0001f)
                 {
                     movePosition.y = 0f;
+                }
+
+                if (hitObject.GetComponent<SpecialSurface>() != null)
+                {
+                    Friction = hitObject.GetComponent<SpecialSurface>().Friction;
                 }
             }
         }

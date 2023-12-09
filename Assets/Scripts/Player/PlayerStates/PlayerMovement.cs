@@ -36,6 +36,8 @@ public class PlayerMovement : PlayerStates
         }
 
         float moveSpeed = movement * speed;
+        moveSpeed = EvaluateFriction(moveSpeed);
+
         playerController.SetHorizontalForce(moveSpeed);
     }
 
@@ -49,5 +51,15 @@ public class PlayerMovement : PlayerStates
     {
         animator.SetBool(idleAnimatorParameter, horizontalMovement == 0 && playerController.Conditions.IsCollidingBelow);
         animator.SetBool(runAnimatorParameter, Mathf.Abs(horizontalInput) > 0.1f && playerController.Conditions.IsCollidingBelow);
+    }
+
+    private float EvaluateFriction(float moveSpeed)
+    {
+        if (playerController.Friction > 0)
+        {
+            moveSpeed = Mathf.Lerp(playerController.Force.x, moveSpeed, Time.deltaTime * 10f * playerController.Friction);
+        }
+
+        return moveSpeed;
     }
 }

@@ -18,6 +18,12 @@ public class LevelManager : MonoBehaviour
         SpawnPlayer(playerPrefab);
     }
 
+    private void Start()
+    {
+        // Call Event
+        OnPlayerSpawn?.Invoke(currentPlayer);
+    }
+
     // Update is called once per frame
     private void Update()
     {
@@ -33,10 +39,7 @@ public class LevelManager : MonoBehaviour
         if (player != null)
         {
             currentPlayer = Instantiate(player, levelStartPoint.position, Quaternion.identity).GetComponent<PlayerMotor>();
-            currentPlayer.GetComponent<Health>().ResetLife();
-
-            // Call Event
-            OnPlayerSpawn?.Invoke(currentPlayer);
+            currentPlayer.GetComponent<Health>().ResetLife();    
         }
     }
 

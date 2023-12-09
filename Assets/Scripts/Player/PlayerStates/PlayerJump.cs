@@ -78,7 +78,7 @@ public class PlayerJump : PlayerStates
         // Jump
         animator.SetBool(jumpAnimatorParameter, playerController.Conditions.IsJumping
                                                   && !playerController.Conditions.IsCollidingBelow
-                                                  && JumpsLeft > 0
+                                                  && JumpsLeft == 0
                                                   && !playerController.Conditions.IsFalling
                                                   && !playerController.Conditions.IsJetpacking);
 
@@ -95,10 +95,25 @@ public class PlayerJump : PlayerStates
                                                   && !playerController.Conditions.IsCollidingBelow
                                                   && !playerController.Conditions.IsJetpacking);
 
-        // Land
-        animator.SetBool(landAnimatorParameter, playerController.Conditions.IsCollidingBelow
-                                                  && playerController.Conditions.IsJumping
-                                                  && !playerController.Conditions.IsFalling 
-                                                  && !playerController.Conditions.IsJetpacking);
+        //// Land
+        //animator.SetBool(landAnimatorParameter, playerController.Conditions.IsCollidingBelow
+        //                                          && playerController.Conditions.IsJumping
+        //                                          && !playerController.Conditions.IsFalling 
+        //                                          && !playerController.Conditions.IsJetpacking);
+    }
+
+    private void JumpResponse(float jump)
+    {
+        playerController.SetVerticalForce(Mathf.Sqrt(2f * jump * Mathf.Abs(playerController.Gravity)));
+    }
+
+    private void OnEnable()
+    {
+        Jumper.OnJump += JumpResponse;
+    }
+
+    private void OnDisable()
+    {
+        Jumper.OnJump -= JumpResponse;
     }
 }
