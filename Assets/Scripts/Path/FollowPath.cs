@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class FollowPath : MonoBehaviour
 {
+    public enum MoveDirections
+    {
+        LEFT, RIGHT, UP, DOWN
+    }
+
     [Header("Settings")]
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float minDistanceToPoint = 0.1f;
+
+    public float MoveSpeed => moveSpeed;
+    public MoveDirections Direction { get; set; }
 
     public List<Vector3> points = new List<Vector3>();  // Get the Point list
 
@@ -14,12 +22,14 @@ public class FollowPath : MonoBehaviour
     private bool moved;
     private int currentPoint = 0;
     private Vector3 currentPosition;
+    private Vector3 previousPosition;
 
     // Start is called before the first frame update
     private void Start()
     {
         playing = true;
 
+        previousPosition = transform.position;
         currentPosition = transform.position;
         transform.position = currentPosition + points[0];
     }
@@ -47,7 +57,30 @@ public class FollowPath : MonoBehaviour
         float distanceToNextPoint = Vector3.Distance(currentPosition + points[currentPoint], transform.position);
         if (distanceToNextPoint < minDistanceToPoint)
         {
+            previousPosition = transform.position;
             currentPoint++;
+        }
+
+        // Define move direction
+        if (previousPosition != Vector3.zero)
+        {
+            if (transform.position.x > previousPosition.x)
+            {
+                Direction = MoveDirections.RIGHT;
+            }
+            else if (transform.position.x < previousPosition.x)
+            {
+                Direction = MoveDirections.LEFT;
+            }
+
+            if (transform.position.y > previousPosition.y)
+            {
+                Direction = MoveDirections.UP;
+            }
+            else if (transform.position.y < previousPosition.y)
+            {
+                Direction = MoveDirections.DOWN;
+            }
         }
 
         // If we are on the last point, reset our position to the first one

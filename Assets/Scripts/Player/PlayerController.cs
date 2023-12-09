@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     //Internal
     private BoxCollider2D boxCollider2D;
     private PlayerConditions conditions;
+    private MovingPlatform movingPlatform;
 
     private Vector2 boundsTopLeft;
     private Vector2 boundsTopRight;
@@ -59,6 +60,7 @@ public class PlayerController : MonoBehaviour
         ApplyGravity();
         StartMovement();
 
+        EnterPlatformMovement();
         SetupRayOrigin();
         GetFaceDirection();
         RotateModel();
@@ -206,6 +208,11 @@ public class PlayerController : MonoBehaviour
                 {
                     Friction = hitObject.GetComponent<SpecialSurface>().Friction;
                 }
+
+                if (hitObject.GetComponent<MovingPlatform>() != null)
+                {
+                    movingPlatform = hitObject.GetComponent<MovingPlatform>();
+                }
             }
         }
     }
@@ -269,6 +276,27 @@ public class PlayerController : MonoBehaviour
                 }
 
                 force.x = 0f;
+            }
+        }
+    }
+
+    private void EnterPlatformMovement()
+    {
+        if (movingPlatform == null)
+        {
+            return;
+        }
+
+        if (movingPlatform.CollidingWithPlayer)
+        {
+            if (movingPlatform.MoveSpeed != 0)
+            {
+                Vector3 moveDirection = movingPlatform.Direction == FollowPath.MoveDirections.RIGHT ? Vector3.right :
+                                        movingPlatform.Direction == FollowPath.MoveDirections.LEFT ? Vector3.left :
+                                        movingPlatform.Direction == FollowPath.MoveDirections.UP ? Vector3.up :
+                                        Vector3.down; // Default to down if none of the above conditions are met
+
+                transform.Translate(moveDirection * movingPlatform.MoveSpeed * Time.deltaTime);
             }
         }
     }
