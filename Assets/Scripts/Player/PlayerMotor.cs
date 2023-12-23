@@ -19,7 +19,7 @@ public class PlayerMotor : MonoBehaviour
         {
             foreach (PlayerStates state in playerStates)
             {
-                state.LocalInput();
+                //state.LocalInput();
                 state.ExecuteState();
                 state.SetAnimation();
             }

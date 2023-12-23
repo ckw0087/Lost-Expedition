@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : PlayerStates
 {
@@ -23,6 +24,22 @@ public class PlayerMovement : PlayerStates
         MovePlayer();
     }
 
+    private void OnMovePerformed(InputAction.CallbackContext context)
+    {
+        // Handle movement input
+        Vector2 input = context.ReadValue<Vector2>();
+        horizontalMovement = input.x;
+        horizontalInput = input.x;
+    }
+
+    private void OnMoveCanceled(InputAction.CallbackContext context)
+    {
+        // Handle movement stopping
+        Vector2 input = context.ReadValue<Vector2>();
+        horizontalMovement = input.x;
+        horizontalInput = input.x;
+    }
+
     // Moves our Player    
     private void MovePlayer()
     {
@@ -41,11 +58,11 @@ public class PlayerMovement : PlayerStates
         playerController.SetHorizontalForce(moveSpeed);
     }
 
-    // Initialize our internal movement direction   
-    protected override void GetInput()
-    {
-        horizontalMovement = horizontalInput;
-    }
+    //// Initialize our internal movement direction   
+    //protected override void GetInput()
+    //{
+    //    horizontalMovement = horizontalInput;
+    //}
 
     public override void SetAnimation()
     {
@@ -61,5 +78,21 @@ public class PlayerMovement : PlayerStates
         }
 
         return moveSpeed;
+    }
+
+    private void OnEnable()
+    {
+        // Subscribe move action event
+        moveAction.Enable();
+        moveAction.performed += OnMovePerformed;
+        moveAction.canceled += OnMoveCanceled;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe move action event
+        moveAction.Disable();
+        moveAction.performed -= OnMovePerformed;
+        moveAction.canceled -= OnMoveCanceled;
     }
 }

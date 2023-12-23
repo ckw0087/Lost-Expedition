@@ -7,6 +7,6 @@ public class CircularSaw : LevelComponent
     public override void Damage(PlayerMotor player)
     {
         base.Damage(player);
-        Debug.Log("Blade");
+        Debug.Log("Circular Saw");
     }
 }

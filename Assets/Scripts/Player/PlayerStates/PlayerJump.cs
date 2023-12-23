@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerJump : PlayerStates
 {
@@ -9,9 +10,8 @@ public class PlayerJump : PlayerStates
     [SerializeField] private int maxJumps = 2;
 
     private int jumpAnimatorParameter = Animator.StringToHash("Jumping");
-    //private int doubleJumpParameter = Animator.StringToHash("DoubleJump");
+    private int doubleJumpParameter = Animator.StringToHash("DoubleJump");
     private int fallAnimatorParameter = Animator.StringToHash("Falling");
-    private int landAnimatorParameter = Animator.StringToHash("Landing");
 
     // Return how many jumps we have left
     public int JumpsLeft { get; set; }
@@ -31,13 +31,18 @@ public class PlayerJump : PlayerStates
         }
     }
 
-    protected override void GetInput()
+    private void OnJumpPerformed(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Jump();
-        }
+        Jump();
     }
+
+    //protected override void GetInput()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        Jump();
+    //    }
+    //}
 
     private void Jump()
     {
@@ -78,11 +83,11 @@ public class PlayerJump : PlayerStates
         // Jump
         animator.SetBool(jumpAnimatorParameter, playerController.Conditions.IsJumping
                                                   && !playerController.Conditions.IsCollidingBelow
-                                                  && JumpsLeft == 0
+                                                  && JumpsLeft > 0
                                                   && !playerController.Conditions.IsFalling
                                                   && !playerController.Conditions.IsJetpacking);
 
-        //// Double jump
+        // Double jump
         //animator.SetBool(doubleJumpParameter, playerController.Conditions.IsJumping
         //                                          && !playerController.Conditions.IsCollidingBelow
         //                                          && JumpsLeft == 0
@@ -94,12 +99,6 @@ public class PlayerJump : PlayerStates
                                                   && playerController.Conditions.IsJumping
                                                   && !playerController.Conditions.IsCollidingBelow
                                                   && !playerController.Conditions.IsJetpacking);
-
-        //// Land
-        //animator.SetBool(landAnimatorParameter, playerController.Conditions.IsCollidingBelow
-        //                                          && playerController.Conditions.IsJumping
-        //                                          && !playerController.Conditions.IsFalling 
-        //                                          && !playerController.Conditions.IsJetpacking);
     }
 
     private void JumpResponse(float jump)
@@ -110,10 +109,18 @@ public class PlayerJump : PlayerStates
     private void OnEnable()
     {
         Jumper.OnJump += JumpResponse;
+
+        // Subscribe jump action event
+        jumpAction.Enable();
+        jumpAction.performed += OnJumpPerformed;
     }
 
     private void OnDisable()
     {
         Jumper.OnJump -= JumpResponse;
+
+        // Unsubscribe jump action event
+        jumpAction.Disable();
+        jumpAction.performed -= OnJumpPerformed;
     }
 }

@@ -7,6 +7,6 @@ public class FallingBlock : LevelComponent
     public override void Damage(PlayerMotor player)
     {
         base.Damage(player);
-        Debug.Log("Rock");
+        Debug.Log("Falling Block");
     }
 }

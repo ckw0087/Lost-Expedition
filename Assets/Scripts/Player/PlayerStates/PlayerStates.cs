@@ -1,13 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerStates : MonoBehaviour
 {
     protected PlayerController playerController;
-    protected Animator animator;
+    protected Animator animator;   
     protected float horizontalInput;
     protected float verticalInput;
+
+    protected PlayerInput playerInput;
+    protected InputAction moveAction;
+    protected InputAction jumpAction;
+
+    protected virtual void Awake()
+    {
+        // Get the PlayerInput component attached to the same GameObject
+        playerInput = GetComponent<PlayerInput>();
+
+        // Retrieve the actions from the Input Action Asset
+        moveAction = playerInput.actions["Move"];
+        jumpAction = playerInput.actions["Jump"];
+    }
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -29,13 +44,13 @@ public class PlayerStates : MonoBehaviour
     }
 
     // Gets the normal Input   
-    public virtual void LocalInput()
-    {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+    //public virtual void LocalInput()
+    //{
+    //    horizontalInput = Input.GetAxisRaw("Horizontal");
+    //    verticalInput = Input.GetAxisRaw("Vertical");
 
-        GetInput();
-    }
+    //    GetInput();
+    //}
 
     // Override to support other Inputs
     protected virtual void GetInput()
