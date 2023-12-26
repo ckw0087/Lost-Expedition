@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Fusion;
 
-public class PlayerStates : MonoBehaviour
+public class PlayerStates : NetworkBehaviour
 {
     protected PlayerController playerController;
     protected Animator animator;   
@@ -61,5 +62,5 @@ public class PlayerStates : MonoBehaviour
     public virtual void SetAnimation()
     {
 
-    }
+    }    
 }

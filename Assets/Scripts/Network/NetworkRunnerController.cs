@@ -26,7 +26,7 @@ public class NetworkRunnerController : MonoBehaviour, INetworkRunnerCallbacks
 
         networkRunnerInstance.AddCallbacks(this);
 
-        //networkRunnerInstance.ProvideInput = true;
+        networkRunnerInstance.ProvideInput = true;
 
         var startGameArgs = new StartGameArgs()
         {

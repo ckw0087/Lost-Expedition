@@ -9,6 +9,10 @@ public class PlayerJetpack : PlayerStates
     [SerializeField] private float jetpackForce = 3f;
     [SerializeField] private float jetpackFuel = 5f;
 
+    public float JetpackFuel { get; set; }
+    public float FuelLeft { get; set; }
+    public float InitialFuel => jetpackFuel;
+
     private float fuelLeft;
     private float fuelDurationLeft;
     private bool stillHaveFuel = true;
@@ -18,9 +22,10 @@ public class PlayerJetpack : PlayerStates
     protected override void InitState()
     {
         base.InitState();
-        fuelDurationLeft = jetpackFuel;
-        fuelLeft = jetpackFuel;
-        UIManager.Instance.UpdateFuel(fuelLeft, jetpackFuel);
+        JetpackFuel = jetpackFuel;
+        fuelDurationLeft = JetpackFuel;
+        FuelLeft = JetpackFuel;
+        UIManager.Instance.UpdateFuel(FuelLeft, JetpackFuel);
     }
 
     protected override void GetInput()
@@ -43,7 +48,7 @@ public class PlayerJetpack : PlayerStates
             return;
         }
 
-        if (fuelLeft <= 0)
+        if (FuelLeft <= 0)
         {
             EndJetpack();
             stillHaveFuel = false;
@@ -63,12 +68,12 @@ public class PlayerJetpack : PlayerStates
 
     private IEnumerator BurnFuel()
     {
-        float fuelConsumed = fuelLeft;
-        if (fuelConsumed > 0 && playerController.Conditions.IsJetpacking && fuelLeft <= fuelConsumed)
+        float fuelConsumed = FuelLeft;
+        if (fuelConsumed > 0 && playerController.Conditions.IsJetpacking && FuelLeft <= fuelConsumed)
         {
             fuelConsumed -= Time.deltaTime;
-            fuelLeft = fuelConsumed;
-            UIManager.Instance.UpdateFuel(fuelLeft, jetpackFuel);
+            FuelLeft = fuelConsumed;
+            UIManager.Instance.UpdateFuel(FuelLeft, JetpackFuel);
             yield return null;
         }
     }
@@ -76,12 +81,12 @@ public class PlayerJetpack : PlayerStates
     private IEnumerator Refill()
     {
         yield return new WaitForSeconds(0.5f);
-        float fuel = fuelLeft;
-        while (fuel < jetpackFuel && !playerController.Conditions.IsJetpacking)
+        float fuel = FuelLeft;
+        while (fuel < JetpackFuel && !playerController.Conditions.IsJetpacking)
         {
             fuel += Time.deltaTime;
-            fuelLeft = fuel;
-            UIManager.Instance.UpdateFuel(fuelLeft, jetpackFuel);
+            FuelLeft = fuel;
+            UIManager.Instance.UpdateFuel(FuelLeft, JetpackFuel);
 
             if (!stillHaveFuel && fuel > 0.2f)
             {

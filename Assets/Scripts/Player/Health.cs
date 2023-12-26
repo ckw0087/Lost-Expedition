@@ -12,6 +12,10 @@ public class Health : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private int lifes = 3;
 
+    public int MaxLifes => maxLifes;
+
+    public int CurrentLifes => currentLifes;
+
     private int maxLifes;
     private int currentLifes;
     private bool hasTakenDamage;
