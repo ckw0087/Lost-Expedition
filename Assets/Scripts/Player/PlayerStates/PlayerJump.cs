@@ -10,7 +10,7 @@ public class PlayerJump : PlayerStates
     [SerializeField] private int maxJumps = 2;
 
     private int jumpAnimatorParameter = Animator.StringToHash("Jumping");
-    private int doubleJumpParameter = Animator.StringToHash("DoubleJump");
+    private int doubleJumpAnimatorParameter = Animator.StringToHash("DoubleJumping");
     private int fallAnimatorParameter = Animator.StringToHash("Falling");
 
     // Return how many jumps we have left
@@ -88,11 +88,11 @@ public class PlayerJump : PlayerStates
                                                   && !playerController.Conditions.IsJetpacking);
 
         // Double jump
-        //animator.SetBool(doubleJumpParameter, playerController.Conditions.IsJumping
-        //                                          && !playerController.Conditions.IsCollidingBelow
-        //                                          && JumpsLeft == 0
-        //                                          && !playerController.Conditions.IsFalling
-        //                                          && !playerController.Conditions.IsJetpacking);
+        animator.SetBool(doubleJumpAnimatorParameter, playerController.Conditions.IsJumping
+                                                  && !playerController.Conditions.IsCollidingBelow
+                                                  && JumpsLeft == 0
+                                                  && !playerController.Conditions.IsFalling
+                                                  && !playerController.Conditions.IsJetpacking);
 
         // Fall
         animator.SetBool(fallAnimatorParameter, playerController.Conditions.IsFalling
