@@ -801,7 +801,7 @@ GameObject:
   - component: {fileID: 247168794}
   - component: {fileID: 247168793}
   m_Layer: 0
-  m_Name: Lobby_UI_Manager
+  m_Name: LobbyUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3514,7 +3514,7 @@ GameObject:
   - component: {fileID: 1361808848}
   - component: {fileID: 1361808849}
   m_Layer: 0
-  m_Name: Network_Runner_Controller
+  m_Name: NetworkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4180,7 +4180,7 @@ GameObject:
   - component: {fileID: 1610215668}
   - component: {fileID: 1610215669}
   m_Layer: 0
-  m_Name: Global_Managers
+  m_Name: GlobalManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
