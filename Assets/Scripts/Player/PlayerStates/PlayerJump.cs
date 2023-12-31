@@ -9,7 +9,6 @@ public class PlayerJump : PlayerStates
     [SerializeField] private float jumpHeight = 5f;
     [SerializeField] private int maxJumps = 2;
 
-    private bool jumpPerformed;
     private int jumpAnimatorParameter = Animator.StringToHash("Jumping");
     private int doubleJumpParameter = Animator.StringToHash("DoubleJump");
     private int fallAnimatorParameter = Animator.StringToHash("Falling");
@@ -32,31 +31,9 @@ public class PlayerJump : PlayerStates
         }
     }
 
-    // Fusion network update
-    public override void FixedUpdateNetwork()
-    {
-        if (Runner.TryGetInputForPlayer<PlayerNetworkData>(Object.InputAuthority, out var input))
-        {
-            Jump(input);
-        }
-    }
-
-    public PlayerNetworkData GetPlayerNetworkInput()
-    {
-        PlayerNetworkData data = new PlayerNetworkData();
-        data.JumpPressed = jumpPerformed;
-
-        return data;
-    }
-
     private void OnJumpPerformed(InputAction.CallbackContext context)
     {
-        jumpPerformed = true;
-    }
-
-    private void OnJumpCanceled(InputAction.CallbackContext context)
-    {
-        jumpPerformed = false;
+        Jump();
     }
 
     //protected override void GetInput()
@@ -67,26 +44,23 @@ public class PlayerJump : PlayerStates
     //    }
     //}
 
-    private void Jump(PlayerNetworkData input)
+    private void Jump()
     {
-        if (input.JumpPressed)
+        if (!CanJump())
         {
-            if (!CanJump())
-            {
-                return;
-            }
+            return;
+        }
 
-            if (JumpsLeft == 0)
-            {
-                return;
-            }
+        if (JumpsLeft == 0)
+        {
+            return;
+        }
 
-            JumpsLeft -= 1;
+        JumpsLeft -= 1;
 
-            float jumpForce = Mathf.Sqrt(jumpHeight * 2f * Mathf.Abs(playerController.Gravity));
-            playerController.SetVerticalForce(jumpForce);
-            playerController.Conditions.IsJumping = true;
-        }       
+        float jumpForce = Mathf.Sqrt(jumpHeight * 2f * Mathf.Abs(playerController.Gravity));
+        playerController.SetVerticalForce(jumpForce);
+        playerController.Conditions.IsJumping = true;
     }
 
     private bool CanJump()
@@ -139,7 +113,6 @@ public class PlayerJump : PlayerStates
         // Subscribe jump action event
         jumpAction.Enable();
         jumpAction.performed += OnJumpPerformed;
-        jumpAction.canceled += OnJumpCanceled;
     }
 
     private void OnDisable()
@@ -149,6 +122,5 @@ public class PlayerJump : PlayerStates
         // Unsubscribe jump action event
         jumpAction.Disable();
         jumpAction.performed -= OnJumpPerformed;
-        jumpAction.canceled -= OnJumpCanceled;
     }
 }
