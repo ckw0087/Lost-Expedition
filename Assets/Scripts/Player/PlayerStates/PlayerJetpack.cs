@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
+using UnityEngine.InputSystem;
 
 public class PlayerJetpack : PlayerStates
 {
     [Header("Settings")]
     [SerializeField] private float jetpackForce = 3f;
     [SerializeField] private float jetpackFuel = 5f;
+    [SerializeField] private ParticleSystem hoverParticle;
 
     private float fuelLeft;
     private float fuelDurationLeft;
     private bool stillHaveFuel = true;
 
-    //private int jetpackParameter = Animator.StringToHash("Jetpack");
+    private int hoverAnimatorParameter = Animator.StringToHash("Hovering");
 
     protected override void InitState()
     {
@@ -23,18 +24,36 @@ public class PlayerJetpack : PlayerStates
         UIManager.Instance.UpdateFuel(fuelLeft, jetpackFuel);
     }
 
-    protected override void GetInput()
+    private void OnHoverStarted(InputAction.CallbackContext context)
     {
-        if (Input.GetKey(KeyCode.X))
+        float input = context.ReadValue<float>();
+        if (input > 0)
         {
             Jetpack();
-        }
+        }       
+    }
 
-        if (Input.GetKeyUp(KeyCode.X))
+    private void OnHoverCanceled(InputAction.CallbackContext context)
+    {
+        float input = context.ReadValue<float>();
+        if (input <= 0)
         {
             EndJetpack();
         }
     }
+
+    //protected override void GetInput()
+    //{
+    //    if (Input.GetKey(KeyCode.X))
+    //    {
+    //        Jetpack();
+    //    }
+
+    //    if (Input.GetKeyUp(KeyCode.X))
+    //    {
+    //        EndJetpack();
+    //    }
+    //}
 
     private void Jetpack()
     {
@@ -92,8 +111,29 @@ public class PlayerJetpack : PlayerStates
         }
     }
 
-    //public override void SetAnimation()
-    //{
-    //    animator.SetBool(jetpackParameter, playerController.Conditions.IsJetpacking);
-    //}
+    public override void SetAnimation()
+    {
+        animator.SetBool(hoverAnimatorParameter, playerController.Conditions.IsJetpacking);
+    }
+
+    public void PlayHoverEffect()
+    {
+        hoverParticle.Play();
+    }
+
+    private void OnEnable()
+    {
+        // Subscribe hover action event
+        hoverAction.Enable();
+        hoverAction.started += OnHoverStarted;
+        hoverAction.canceled += OnHoverCanceled;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe hover action event
+        hoverAction.Disable();
+        hoverAction.started -= OnHoverStarted;
+        hoverAction.canceled -= OnHoverCanceled;
+    }
 }

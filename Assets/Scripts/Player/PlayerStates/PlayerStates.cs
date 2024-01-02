@@ -13,7 +13,7 @@ public class PlayerStates : MonoBehaviour
     protected PlayerInput playerInput;
     protected InputAction moveAction;
     protected InputAction jumpAction;
-    protected InputAction rollAction;
+    protected InputAction hoverAction;
 
     protected virtual void Awake()
     {
@@ -23,7 +23,7 @@ public class PlayerStates : MonoBehaviour
         // Retrieve the actions from the Input Action Asset
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
-        rollAction = playerInput.actions["Roll"];
+        hoverAction = playerInput.actions["Hover"];
     }
 
     // Start is called before the first frame update

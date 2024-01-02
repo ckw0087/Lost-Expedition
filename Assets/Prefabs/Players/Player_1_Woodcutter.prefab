@@ -18,9 +18,9 @@ GameObject:
   - component: {fileID: 4258136700606079809}
   - component: {fileID: 3429804495936892574}
   - component: {fileID: 76839718751651531}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player_1_Woodcutter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800b30975f6ca7940a2b09b3dec922f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 7
 --- !u!114 &6626620417495992629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84846365ab7356e4f81c11a0cd517a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifes: 3
+  lifes: 5
 --- !u!95 &76839718751651531
 Animator:
   serializedVersion: 5

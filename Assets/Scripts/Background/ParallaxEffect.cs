@@ -7,12 +7,13 @@ public class ParallaxEffect : MonoBehaviour
     [SerializeField] private float parallaxEffectIntensity;
     [SerializeField] private GameObject cam;
 
-    private float length, startPos;
+    private float length, xPos, yPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        startPos = transform.position.x;
+        xPos = transform.position.x;
+        yPos = transform.position.y;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
@@ -20,16 +21,18 @@ public class ParallaxEffect : MonoBehaviour
     void Update()
     {
         float relativeDistance = cam.transform.position.x * (1 - parallaxEffectIntensity);
-        float distance = cam.transform.position.x * parallaxEffectIntensity;
-        transform.position = new Vector3(startPos + distance, transform.position.y, transform.position.z);
+        float xDistance = cam.transform.position.x * parallaxEffectIntensity;
+        float yDistance = cam.transform.position.y * parallaxEffectIntensity;
 
-        if (relativeDistance > startPos + length)
+        transform.position = new Vector3(xPos + xDistance, yPos + yDistance, transform.position.z);
+
+        if (relativeDistance > xPos + length)
         {
-            startPos += length;
+            xPos += length;
         }
-        else if (relativeDistance < startPos - length)
+        else if (relativeDistance < xPos - length)
         {
-            startPos -= length;
+            xPos -= length;
         }            
     }
 }

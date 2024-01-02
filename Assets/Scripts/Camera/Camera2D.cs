@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Camera2D : MonoBehaviour
 {
-    [Header("Horizontal")]
+    [Header("Settings")]
     [SerializeField] private bool horizontalFollow = true;
     [SerializeField] private bool verticalFollow = true;
+    [SerializeField] private Vector3 minViewValue;
+    [SerializeField] private Vector3 maxViewValue;
+    [SerializeField] private float clampSmoothness = 3f;
 
     [Header("Horizontal")]
     [SerializeField] [Range(0, 1)] private float horizontalInfluence = 1f;
     [SerializeField] private float horizontalOffset = 0f;
-    [SerializeField] private float horizontalSmoothness = 3f;
+    [SerializeField] private float horizontalSmoothness = 3f;   
 
     [Header("Vertical")]
     [SerializeField] [Range(0, 1)] private float verticalInfluence = 1f;
@@ -29,11 +32,12 @@ public class Camera2D : MonoBehaviour
 
     private float targetHorizontalSmoothFollow;
     private float targetVerticalSmoothFollow;
+    private Vector3 clampedCameraPosition;
 
     // Update is called once per frame
     private void Update()
     {
-        MoveCamera();
+        MoveCamera();        
     }
 
     // Moves our Camera
@@ -53,7 +57,7 @@ public class Camera2D : MonoBehaviour
         float yPos = verticalFollow ? CameraTargetPosition.y : transform.localPosition.y;
 
         // Set offset
-        CameraTargetPosition += new Vector3(horizontalFollow ? horizontalOffset : 0f, verticalFollow ? verticalOffset : 0f, 0f);
+        CameraTargetPosition += new Vector3(horizontalFollow ? horizontalOffset : 0f, verticalFollow ? verticalOffset : 0f, 0f);        
 
         // Set smooth value
         targetHorizontalSmoothFollow = Mathf.Lerp(targetHorizontalSmoothFollow, CameraTargetPosition.x, horizontalSmoothness * Time.deltaTime);
@@ -67,8 +71,19 @@ public class Camera2D : MonoBehaviour
         // New position
         Vector3 newCameraPosition = transform.localPosition + deltaDirection;
 
-        // Apply new position
-        transform.localPosition = new Vector3(newCameraPosition.x, newCameraPosition.y, transform.localPosition.z);
+        // Calculate and apply clamping
+        float clampedX = Mathf.Clamp(newCameraPosition.x, minViewValue.x, maxViewValue.x);
+        float clampedY = Mathf.Clamp(newCameraPosition.y, minViewValue.y, maxViewValue.y);
+        float clampedZ = Mathf.Clamp(newCameraPosition.z, minViewValue.z, maxViewValue.z);
+
+        // Apply the clamped position
+        Vector3 targetClampedPosition = new Vector3(clampedX, clampedY, clampedZ);
+
+        // Apply Lerp for smooth transition
+        clampedCameraPosition = Vector3.Lerp(clampedCameraPosition, targetClampedPosition, clampSmoothness * Time.deltaTime);
+
+        // Apply the clamped and smoothed position
+        transform.localPosition = new Vector3(clampedCameraPosition.x, clampedCameraPosition.y, transform.localPosition.z);
     }
 
     // Returns the position of out target

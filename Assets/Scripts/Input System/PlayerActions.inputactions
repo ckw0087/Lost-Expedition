@@ -24,9 +24,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Roll",
+                    "name": "Hover",
+                    "type": "Value",
+                    "id": "47f9a513-8548-44f3-ade9-d5248c802aaa",
+                    "expectedControlType": "Digital",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "MeleeAttack",
                     "type": "Button",
-                    "id": "feb819ef-c742-4d36-8d36-9a923af30dbc",
+                    "id": "9798bb98-0b74-4e6c-b73b-9d4c118e13c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RangedAttack",
+                    "type": "Button",
+                    "id": "8d8724b4-c4f6-4981-991c-c0abb36e2598",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -157,12 +175,34 @@
                 },
                 {
                     "name": "",
-                    "id": "d0019b30-fc18-4dfa-a233-e8548eb861bb",
-                    "path": "<Keyboard>/ctrl",
+                    "id": "945e6696-7038-4fe1-92be-fdf283ff4282",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Roll",
+                    "action": "Hover",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b2dcbcf-d158-4e0b-8fec-1d3aa35b4d76",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MeleeAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "274b29d1-41e5-4021-90ab-060974bc4e93",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RangedAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

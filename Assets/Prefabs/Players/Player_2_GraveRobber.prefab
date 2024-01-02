@@ -16,12 +16,11 @@ GameObject:
   - component: {fileID: 960586765074956636}
   - component: {fileID: 4018711474112934785}
   - component: {fileID: 374157874125570433}
-  - component: {fileID: 2338902940852861235}
   - component: {fileID: 3771196669184476115}
   - component: {fileID: 6623117485656293174}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player_2_GraveRobber
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,7 +165,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.625, y: 2}
+  m_Size: {x: 1.1875, y: 2.0625}
   m_EdgeRadius: 0
 --- !u!114 &9147020155608915909
 MonoBehaviour:
@@ -226,20 +225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 3
   maxJumps: 2
---- !u!114 &2338902940852861235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806370940862759882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83082cd91f1577649898e36aa6a6b456, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rollSpeed: 10
-  rollDuration: 1
 --- !u!114 &3771196669184476115
 MonoBehaviour:
   m_ObjectHideFlags: 0
