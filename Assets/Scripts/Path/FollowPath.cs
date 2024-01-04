@@ -73,14 +73,14 @@ public class FollowPath : MonoBehaviour
                 Direction = MoveDirections.LEFT;
             }
 
-            if (transform.position.y > previousPosition.y)
-            {
-                Direction = MoveDirections.UP;
-            }
-            else if (transform.position.y < previousPosition.y)
-            {
-                Direction = MoveDirections.DOWN;
-            }
+            //if (transform.position.y > previousPosition.y)
+            //{
+            //    Direction = MoveDirections.UP;
+            //}
+            //else if (transform.position.y < previousPosition.y)
+            //{
+            //    Direction = MoveDirections.DOWN;
+            //}
         }
 
         // If we are on the last point, reset our position to the first one

@@ -9,19 +9,19 @@ public class ObjectPooler : MonoBehaviour
     [SerializeField] private int poolSize = 10;
     [SerializeField] private bool poolCanExpand = true;
 
-    private List<GameObject> _poolObjects;
-    private GameObject _poolContainer;
+    private List<GameObject> poolObjects;
+    private GameObject poolContainer;
 
     private void Start()
     {
-        _poolContainer = new GameObject("Pooler: " + objectPrefab.name);
+        poolContainer = new GameObject("Pooler: " + objectPrefab.name);
         CreatePool();
     }
 
     // Creates the pool with all the objects
     private void CreatePool()
     {
-        _poolObjects = new List<GameObject>();
+        poolObjects = new List<GameObject>();
         for (int i = 0; i < poolSize; i++)
         {
             AddObjectToPool();
@@ -33,20 +33,20 @@ public class ObjectPooler : MonoBehaviour
     {
         GameObject newObject = Instantiate(objectPrefab);
         newObject.SetActive(false);
-        newObject.transform.SetParent(_poolContainer.transform);
+        newObject.transform.SetParent(poolContainer.transform);
 
-        _poolObjects.Add(newObject);
+        poolObjects.Add(newObject);
         return newObject;
     }
 
     // Returns one object from the pool
     public GameObject GetObjectFromPool()
     {
-        for (int i = 0; i < _poolObjects.Count; i++)
+        for (int i = 0; i < poolObjects.Count; i++)
         {
-            if (!_poolObjects[i].activeInHierarchy)
+            if (!poolObjects[i].activeInHierarchy)
             {
-                return _poolObjects[i];
+                return poolObjects[i];
             }
         }
 

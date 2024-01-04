@@ -10,12 +10,9 @@ public class FallingBlockTrigger : MonoBehaviour
     private Animator animator;
     private Rigidbody2D myRigidbody;
 
-    private int triggerAnimatorParameter = Animator.StringToHash("Trigger");
-
     private void Start()
     {
         spriteRenderer = fallingBlockTrap.GetComponent<SpriteRenderer>();
-        animator = fallingBlockTrap.GetComponent<Animator>();
         myRigidbody = fallingBlockTrap.GetComponent<Rigidbody2D>();
 
         if (fallingBlockTrap != null)
@@ -28,11 +25,10 @@ public class FallingBlockTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            animator.SetTrigger(triggerAnimatorParameter);
             spriteRenderer.enabled = true;
             myRigidbody.isKinematic = false;
 
-            Destroy(transform.parent.gameObject, 5f);
+            Destroy(transform.parent.gameObject, 3f);
         }
     }
 }

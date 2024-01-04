@@ -46,9 +46,9 @@ public class StateController : MonoBehaviour
     }
 
     // Create a test line to visualize the ray that we are casting
-    public void DebugRay(float rayLenght, Vector3 startPosition, Vector3 direction, bool playerDetected)
+    public void DebugRay(float rayLength, Vector3 startPosition, Vector3 direction, bool playerDetected)
     {
-        Debug.DrawLine(startPosition, startPosition + direction * rayLenght, playerDetected ? Color.green : Color.red);
+        Debug.DrawLine(startPosition, startPosition + direction * rayLength, playerDetected ? Color.green : Color.red);
     }
 
     // Get the detection circle data we want to create

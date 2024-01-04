@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main_Menu.unity
+    path: Assets/Scenes/Draft_Main_Menu.unity
     guid: 3560848d73af29e4a8c7df4ffe9a48aa
   - enabled: 1
-    path: Assets/Scenes/Level_1.unity
+    path: Assets/Scenes/Draft_LevelGeneration.unity
     guid: e99fa4920fc57834b97347344c6e263e
   - enabled: 1
     path: Assets/Scenes/Draft_GameDesign.unity

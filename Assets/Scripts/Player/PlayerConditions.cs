@@ -12,7 +12,6 @@ public class PlayerConditions : MonoBehaviour
     public bool IsWallClinging { get; set; }
     public bool IsJetpacking { get; set; }
     public bool IsJumping { get; set; }
-    public bool IsRolling { get; set; }
 
     public void Reset()
     {

@@ -12,9 +12,17 @@ public class Health : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private int lifes = 3;
 
+    public int MaxLifes => maxLifes;
+
+    public int CurrentLifes => currentLifes;
+
+    private Animator animator;
     private int maxLifes;
     private int currentLifes;
     private bool hasTakenDamage;
+
+    private int hurtAnimatorParameter = Animator.StringToHash("Hurting");
+    private int deathAnimatorParameter = Animator.StringToHash("Dying");
 
     private void Awake()
     {
@@ -24,6 +32,8 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        animator = GetComponent<Animator>();
+
         ResetLife();
     }
 
@@ -52,6 +62,7 @@ public class Health : MonoBehaviour
         currentLifes -= 1;
         if (currentLifes <= 0)
         {
+            animator.SetTrigger(hurtAnimatorParameter);
             currentLifes = 0;
             OnDeath?.Invoke(gameObject.GetComponent<PlayerMotor>());
         }
@@ -61,6 +72,7 @@ public class Health : MonoBehaviour
 
     public void KillPlayer()
     {
+        animator.SetTrigger(deathAnimatorParameter);
         currentLifes = 0;
         UpdateLifesUI();
         OnDeath?.Invoke(gameObject.GetComponent<PlayerMotor>());

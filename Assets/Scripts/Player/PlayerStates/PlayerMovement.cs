@@ -8,6 +8,9 @@ public class PlayerMovement : PlayerStates
     [Header("Settings")]
     [SerializeField] private float speed = 10f;
 
+    public float Speed { get; set; }
+    public float InitialSpeed => speed;
+
     private float horizontalMovement;
     private float movement;
 
@@ -17,6 +20,7 @@ public class PlayerMovement : PlayerStates
     protected override void InitState()
     {
         base.InitState();
+        Speed = speed;
     }
 
     public override void ExecuteState()
@@ -52,7 +56,7 @@ public class PlayerMovement : PlayerStates
             movement = 0f;
         }
 
-        float moveSpeed = movement * speed;
+        float moveSpeed = movement * Speed;
         moveSpeed = EvaluateFriction(moveSpeed);
 
         playerController.SetHorizontalForce(moveSpeed);
