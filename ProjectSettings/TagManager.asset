@@ -47,11 +47,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Map
-    uniqueID: 1184310339
-    locked: 0
   - name: LevelComponent
     uniqueID: 3318698555
+    locked: 0
+  - name: Map
+    uniqueID: 1184310339
     locked: 0
   - name: Collectible
     uniqueID: 1035810703

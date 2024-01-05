@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponController : MonoBehaviour
 {
@@ -13,10 +14,20 @@ public class WeaponController : MonoBehaviour
 
     private Weapon weaponEquipped;
 
+    private PlayerInput playerInput;
+    private InputAction shootAction;
+
+    private void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+
+        shootAction = playerInput.actions["Shoot"];
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
-        PlayerController = GetComponent<PlayerController>();
+        PlayerController = GetComponent<PlayerController>();        
 
         EquipWeapon(weapon);
     }
@@ -24,15 +35,20 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Shoot();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Shoot();
+        //}
 
         if (Input.GetKeyDown(KeyCode.H))
         {
             Reload();
         }
+    }
+
+    private void OnShootPerformed(InputAction.CallbackContext context)
+    {
+        Shoot();
     }
 
     // Reloads this Gun
@@ -59,5 +75,17 @@ public class WeaponController : MonoBehaviour
             weaponEquipped.WeaponController = this;
             weaponEquipped.transform.SetParent(holder);
         }
+    }
+
+    private void OnEnable()
+    {
+        shootAction.Enable();
+        shootAction.performed += OnShootPerformed;
+    }
+
+    private void OnDisable()
+    {
+        shootAction.Disable();
+        shootAction.performed -= OnShootPerformed;
     }
 }

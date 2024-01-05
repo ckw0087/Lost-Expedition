@@ -48,7 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 2812358160419246409, guid: e3a554253cfd9f44c8c7c5641419aefe, type: 3}
   firePoint: {fileID: 5243916155469546541}
-  msBetweenShots: 100
+  msBetweenShots: 500
+  magazineSize: 30
+  autoReload: 1
+  reloadTime: 3
 --- !u!114 &2086989425658187076
 MonoBehaviour:
   m_ObjectHideFlags: 0

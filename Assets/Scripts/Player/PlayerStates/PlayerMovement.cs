@@ -57,7 +57,7 @@ public class PlayerMovement : PlayerStates
         }
 
         float moveSpeed = movement * Speed;
-        moveSpeed = EvaluateFriction(moveSpeed);
+        moveSpeed = EvaluateExternalForces(moveSpeed);
 
         playerController.SetHorizontalForce(moveSpeed);
     }
@@ -74,7 +74,7 @@ public class PlayerMovement : PlayerStates
         animator.SetBool(runAnimatorParameter, Mathf.Abs(horizontalInput) > 0.1f && playerController.Conditions.IsCollidingBelow);
     }
 
-    private float EvaluateFriction(float moveSpeed)
+    private float EvaluateExternalForces(float moveSpeed)
     {
         if (playerController.Friction > 0)
         {

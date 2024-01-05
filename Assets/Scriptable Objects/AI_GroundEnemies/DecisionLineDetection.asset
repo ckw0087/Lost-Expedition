@@ -15,4 +15,4 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 128
-  rayLength: 5
+  rayLength: 8

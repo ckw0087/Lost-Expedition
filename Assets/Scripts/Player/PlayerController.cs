@@ -225,7 +225,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Set rayLenght
-        float rayLenght = movePosition.y + boundsHeight / 2f;
+        float rayLength = movePosition.y + boundsHeight / 2f;
 
         // Origin Points
         Vector2 rayTopLeft = (boundsBottomLeft + boundsTopLeft) / 2f;
@@ -236,8 +236,8 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < verticalRayAmount; i++)
         {
             Vector2 rayOrigin = Vector2.Lerp(rayTopLeft, rayTopRight, (float)i / (float)(verticalRayAmount - 1));
-            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, transform.up, rayLenght, collideWith);
-            Debug.DrawRay(rayOrigin, transform.up * rayLenght, Color.red);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, transform.up, rayLength, collideWith);
+            Debug.DrawRay(rayOrigin, transform.up * rayLength, Color.red);
 
             if (hit)
             {

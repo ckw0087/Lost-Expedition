@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 1561223450713450589}
   - component: {fileID: 8699925203210254389}
   - component: {fileID: 5736303732236606257}
+  - component: {fileID: 3504066544008123431}
   m_Layer: 7
   m_Name: Player_3_SteamMan
   m_TagString: Player
@@ -38,7 +39,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5966178554785575145}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8597239449565574336
@@ -224,8 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0ff278b4baa7014eb2828bd462d6907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 4
-  maxJumps: 1
+  jumpHeight: 3
+  maxJumps: 2
 --- !u!114 &1561223450713450589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,3 +274,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313ccb1b5554d95468c1b8acc99dd660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3504066544008123431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789128562695172466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f5e367e08e375843a79ca6dba73a874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 5402231962556931397, guid: ff8d3a2cef6aece42b827998f63349f4, type: 3}
+  holder: {fileID: 5966178554785575145}
+--- !u!1 &7408451026790632157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5966178554785575145}
+  m_Layer: 7
+  m_Name: WeaponHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5966178554785575145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7408451026790632157}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 821238145301817603}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

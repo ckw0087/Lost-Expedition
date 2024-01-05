@@ -32,6 +32,21 @@ public class Projectile : MonoBehaviour
     public void SetDirection(Vector3 newDirection)
     {
         shootDirection = newDirection;
+        ProjectileFaceDirection();
+    }
+
+    private void ProjectileFaceDirection()
+    {
+        if (shootDirection.x > 0)
+        {
+            // Facing right
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else if (shootDirection.x < 0)
+        {
+            // Facing left
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
     }
 
     // Enables the projectile speed
