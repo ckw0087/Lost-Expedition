@@ -33,6 +33,11 @@ public class PlayerJump : PlayerStates
 
     private void OnJumpPerformed(InputAction.CallbackContext context)
     {
+        if (GameManager.Instance.GameState == GameManager.GameStates.LevelCompleted)
+        {
+            return;
+        }
+
         Jump();
     }
 

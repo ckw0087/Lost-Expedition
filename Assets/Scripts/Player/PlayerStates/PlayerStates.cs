@@ -40,7 +40,10 @@ public class PlayerStates : MonoBehaviour
     // Override in order to create the state logic
     public virtual void ExecuteState()
     {
-
+        if (GameManager.Instance.GameState == GameManager.GameStates.LevelCompleted)
+        {
+            return;
+        }
     }
 
     // Gets the normal Input   

@@ -48,6 +48,11 @@ public class WeaponController : MonoBehaviour
 
     private void OnShootPerformed(InputAction.CallbackContext context)
     {
+        if (GameManager.Instance.GameState == GameManager.GameStates.LevelCompleted)
+        {
+            return;
+        }
+
         Shoot();
     }
 

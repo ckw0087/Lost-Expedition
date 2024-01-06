@@ -30,6 +30,11 @@ public class PlayerMovement : PlayerStates
 
     private void OnMovePerformed(InputAction.CallbackContext context)
     {
+        if (GameManager.Instance.GameState == GameManager.GameStates.LevelCompleted)
+        {
+            return;
+        }
+
         // Handle movement input
         Vector2 input = context.ReadValue<Vector2>();
         horizontalMovement = input.x;
@@ -46,7 +51,7 @@ public class PlayerMovement : PlayerStates
 
     // Moves our Player    
     private void MovePlayer()
-    {
+    {       
         if (Mathf.Abs(horizontalMovement) > 0.1f)
         {
             movement = horizontalMovement;
