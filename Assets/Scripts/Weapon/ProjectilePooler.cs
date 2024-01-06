@@ -31,6 +31,7 @@ public class ProjectilePooler : MonoBehaviour
 
         if (hit)
         {
+            SoundManager.Instance.PlaySound(AudioLibrary.Instance.ProjectileCollisionClip);
             OnProjectileCollision?.Invoke(hit.collider);
             projectile.DisableProjectile();
             gameObject.SetActive(false);

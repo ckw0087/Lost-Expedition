@@ -2181,6 +2181,8 @@ GameObject:
   - component: {fileID: 5701930808066821596}
   - component: {fileID: 7576541270037115431}
   - component: {fileID: 6330983675574732822}
+  - component: {fileID: 3012167333889499580}
+  - component: {fileID: 5330146202885491328}
   m_Layer: 0
   m_Name: Sound_Manager
   m_TagString: Untagged
@@ -2312,6 +2314,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3012167333889499580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6603907728001814312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4fc3f9426bf3974e90af3866871aea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPrefab: {fileID: 1750675663428496175, guid: 412a9a3bda5ea54429add132dac63739, type: 3}
+  poolSize: 10
+  poolCanExpand: 1
+--- !u!114 &5330146202885491328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6603907728001814312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001360c5f8b7d974aa64047ade4fbe8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectibleClip: {fileID: 8300000, guid: 5f019d0bea411a64bae266b8deadb7ac, type: 3}
+  enemyProjectileClip: {fileID: 8300000, guid: fcfe173ca2af2d4499af302254cf051d, type: 3}
+  jumpClip: {fileID: 8300000, guid: 433e5ebbe7a20a745a028a98fa18ffcc, type: 3}
+  playerDeadClip: {fileID: 8300000, guid: aff93518403e24d4e9de718de352d5b8, type: 3}
+  projectileClip: {fileID: 8300000, guid: 10ad3dae58828984c94e3f29ae54e7f5, type: 3}
+  projectileCollisionClip: {fileID: 8300000, guid: ae3ee5f93e4429b4797d2dd0c85f73a8, type: 3}
 --- !u!1 &7040751513445584612
 GameObject:
   m_ObjectHideFlags: 0

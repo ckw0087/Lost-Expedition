@@ -55,7 +55,7 @@ public class Weapon : MonoBehaviour
         projectile.EnableProjectile();
     }
 
-    // Shoots our Gun
+    // Shoots our weapon
     public void Shoot()
     {
         if (Time.time > nextShotTime && !isReloading && projectilesRemaining > 0)
@@ -64,6 +64,8 @@ public class Weapon : MonoBehaviour
 
             FireProjectile();
             projectilesRemaining--;
+
+            SoundManager.Instance.PlaySound(AudioLibrary.Instance.ProjectileClip);
         }
     }
 

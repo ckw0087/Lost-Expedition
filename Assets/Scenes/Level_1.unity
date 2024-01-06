@@ -790,6 +790,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Essential_Objects
       objectReference: {fileID: 0}
+    - target: {fileID: 7576541270037115431, guid: 55a74e577e3e0aa4c9abc6e74f8dbb83, type: 3}
+      propertyPath: mainThemes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576541270037115431, guid: 55a74e577e3e0aa4c9abc6e74f8dbb83, type: 3}
+      propertyPath: mainThemes.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b2568bab46f863d479ad18a35a2d7826, type: 3}
+    - target: {fileID: 7576541270037115431, guid: 55a74e577e3e0aa4c9abc6e74f8dbb83, type: 3}
+      propertyPath: mainThemes.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: d2a8c3133fbcc974aa91510b110c21e3, type: 3}
     - target: {fileID: 9145323374601992407, guid: 55a74e577e3e0aa4c9abc6e74f8dbb83, type: 3}
       propertyPath: m_Camera
       value: 

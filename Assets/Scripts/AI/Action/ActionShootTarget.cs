@@ -37,6 +37,8 @@ public class ActionShootTarget : AIAction
             newProjectile.SetDirection(new Vector3(normalizeDirToTarget.x, normalizeDirToTarget.y, 0f));
             newProjectile.EnableProjectile();
 
+            SoundManager.Instance.PlaySound(AudioLibrary.Instance.EnemyProjectileClip);
+
             // Update shot time
             nextShotTime = Time.time + msBetweenShots / 100f;  // We purposely set the fire-rate low
         }

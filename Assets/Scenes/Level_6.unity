@@ -25632,6 +25632,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Essential_Objects
       objectReference: {fileID: 0}
+    - target: {fileID: 7576541270037115431, guid: 55a74e577e3e0aa4c9abc6e74f8dbb83, type: 3}
+      propertyPath: mainThemes.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576541270037115431, guid: 55a74e577e3e0aa4c9abc6e74f8dbb83, type: 3}
+      propertyPath: mainThemes.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b2568bab46f863d479ad18a35a2d7826, type: 3}
+    - target: {fileID: 7576541270037115431, guid: 55a74e577e3e0aa4c9abc6e74f8dbb83, type: 3}
+      propertyPath: mainThemes.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: b850dd3db357635478b7a68b91ddf080, type: 3}
     - target: {fileID: 8171778135917415443, guid: 55a74e577e3e0aa4c9abc6e74f8dbb83, type: 3}
       propertyPath: m_LocalPosition.y
       value: -6.62

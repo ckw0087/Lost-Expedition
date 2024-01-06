@@ -14,7 +14,7 @@ public class AudioLibrary : Singleton<AudioLibrary>
 
     // The Properties for our clips!
     public AudioClip JumpClip => jumpClip;
-    public AudioClip CollectableClip => collectibleClip;
+    public AudioClip CollectibleClip => collectibleClip;
     public AudioClip ProjectileClip => projectileClip;
     public AudioClip EnemyProjectileClip => enemyProjectileClip;
     public AudioClip PlayerDeadClip => playerDeadClip;
