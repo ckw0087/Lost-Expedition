@@ -25,7 +25,7 @@ public class Collectible : MonoBehaviour
         SoundManager.Instance.PlaySound(AudioLibrary.Instance.CollectibleClip);
 
         Collect();
-        DisableCollectable();
+        DisableCollectible();
     }
 
     // Override to add custom colletable behaviour
@@ -35,7 +35,7 @@ public class Collectible : MonoBehaviour
     }
 
     // Disable the spriteRenderer and collider of the Collectable
-    private void DisableCollectable()
+    private void DisableCollectible()
     {
         myCollider2D.enabled = false;
         spriteRenderer.enabled = false;
