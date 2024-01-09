@@ -37164,6 +37164,10 @@ PrefabInstance:
       propertyPath: points.Array.data[1].x
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4829531811348631626, guid: fe24cef2170cadb47a50e9cf1c809c87, type: 3}
+      propertyPath: points.Array.data[1].y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4829531811348631629, guid: fe24cef2170cadb47a50e9cf1c809c87, type: 3}
       propertyPath: m_Name
       value: HorizontalMovingPlatform
