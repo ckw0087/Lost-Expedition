@@ -67989,6 +67989,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4829531811348631626, guid: fe24cef2170cadb47a50e9cf1c809c87, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4829531811348631629, guid: fe24cef2170cadb47a50e9cf1c809c87, type: 3}
       propertyPath: m_Name
       value: MovingPlatform
@@ -68416,6 +68420,10 @@ PrefabInstance:
     - target: {fileID: 4829531811348631622, guid: fe24cef2170cadb47a50e9cf1c809c87, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829531811348631626, guid: fe24cef2170cadb47a50e9cf1c809c87, type: 3}
+      propertyPath: moveSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4829531811348631626, guid: fe24cef2170cadb47a50e9cf1c809c87, type: 3}
       propertyPath: points.Array.data[1].x
@@ -69152,6 +69160,10 @@ PrefabInstance:
     - target: {fileID: 4829531811348631622, guid: fe24cef2170cadb47a50e9cf1c809c87, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829531811348631626, guid: fe24cef2170cadb47a50e9cf1c809c87, type: 3}
+      propertyPath: moveSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4829531811348631626, guid: fe24cef2170cadb47a50e9cf1c809c87, type: 3}
       propertyPath: points.Array.data[1].x
@@ -70040,6 +70052,10 @@ PrefabInstance:
     - target: {fileID: 4829531811348631622, guid: fe24cef2170cadb47a50e9cf1c809c87, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4829531811348631626, guid: fe24cef2170cadb47a50e9cf1c809c87, type: 3}
+      propertyPath: moveSpeed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4829531811348631626, guid: fe24cef2170cadb47a50e9cf1c809c87, type: 3}
       propertyPath: points.Array.data[1].x
