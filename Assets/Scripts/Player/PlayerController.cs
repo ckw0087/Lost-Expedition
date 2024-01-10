@@ -224,7 +224,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        // Set rayLenght
+        // Set Ray Length
         float rayLength = movePosition.y + boundsHeight / 2f;
 
         // Origin Points
