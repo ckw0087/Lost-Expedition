@@ -15,7 +15,9 @@ public class ActionFaceDirection : AIAction
     {
         if (controller.Path != null)
         {
-            if (controller.Path.Direction == FollowPath.MoveDirections.RIGHT)
+            if (controller.Path.Direction == FollowPath.MoveDirections.RIGHT 
+                || controller.Path.Direction == FollowPath.MoveDirections.RIGHT_UP 
+                || controller.Path.Direction == FollowPath.MoveDirections.RIGHT_DOWN)
             {
                 controller.transform.localScale = new Vector3(1, 1, 1);
             }

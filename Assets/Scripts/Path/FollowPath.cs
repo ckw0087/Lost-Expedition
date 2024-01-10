@@ -6,7 +6,7 @@ public class FollowPath : MonoBehaviour
 {
     public enum MoveDirections
     {
-        LEFT, RIGHT, UP, DOWN
+        LEFT, RIGHT, UP, DOWN, LEFT_UP, LEFT_DOWN, RIGHT_UP, RIGHT_DOWN
     }
 
     [Header("Settings")]
@@ -73,14 +73,32 @@ public class FollowPath : MonoBehaviour
                 Direction = MoveDirections.LEFT;
             }
 
-            //if (transform.position.y > previousPosition.y)
-            //{
-            //    Direction = MoveDirections.UP;
-            //}
-            //else if (transform.position.y < previousPosition.y)
-            //{
-            //    Direction = MoveDirections.DOWN;
-            //}
+            if (transform.position.y > previousPosition.y)
+            {
+                Direction = MoveDirections.UP;
+            }
+            else if (transform.position.y < previousPosition.y)
+            {
+                Direction = MoveDirections.DOWN;
+            }
+
+            if (transform.position.x < previousPosition.x && transform.position.y > previousPosition.y)
+            {
+                Direction = MoveDirections.LEFT_UP;
+            }
+            else if (transform.position.x < previousPosition.x && transform.position.y < previousPosition.y)
+            {
+                Direction = MoveDirections.LEFT_DOWN;
+            }
+
+            if (transform.position.x > previousPosition.x && transform.position.y > previousPosition.y)
+            {
+                Direction = MoveDirections.RIGHT_UP;
+            }
+            else if (transform.position.x > previousPosition.x && transform.position.y < previousPosition.y)
+            {
+                Direction = MoveDirections.RIGHT_DOWN;
+            }
         }
 
         // If we are on the last point, reset our position to the first one
